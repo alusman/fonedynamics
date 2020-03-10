@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LocalStorageService } from './services/localstorage.service';
 import { AuthService } from './services/auth.service';
 import { CustomerService } from './services/customer.services';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,15 +25,15 @@ import { CustomerService } from './services/customer.services';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
-    AuthGuard
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule
   ],
-  providers: [LocalStorageService, AuthService, CustomerService],
+  providers: [LocalStorageService, AuthService, CustomerService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
