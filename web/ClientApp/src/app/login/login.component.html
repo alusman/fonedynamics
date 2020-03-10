@@ -1,0 +1,50 @@
+<div class="narrow-width margin-center margin-top">
+
+    <h2>Log In</h2>
+    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+
+        <label>Username</label>
+        <input type="text" name="username" [(ngModel)]="loginInfo.username" #username="ngModel" required form-input />
+        <div error-message>
+          <div *ngIf="f.submitted && !username.valid" automation-hook-required-username-error>
+            <ng-container *ngTemplateOutlet="requiredField"></ng-container>
+          </div>
+        </div>
+
+        <label>Password</label>
+        <div class="flex-container" form-input>
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="loginInfo.password"
+            #pwd
+            #password="ngModel"
+            required
+            form-input
+          />
+          <div
+            class="preview"
+            title="view password"
+            (mouseenter)="pwd.type = 'text'"
+            (mouseleave)="pwd.type = 'password'"
+          >
+          </div>
+        </div>
+        <div error-message>
+          <div *ngIf="f.submitted && !password.valid">
+            <ng-container *ngTemplateOutlet="requiredField"></ng-container>
+          </div>
+        </div>
+
+      <button
+        [disabled]="loading"
+        class="automation-hook-login-btn full-width"
+        mat-raised-button
+        color="primary"
+      >
+        Login
+      </button>
+    </form>
+  </div>
+
+<ng-template #requiredField> <span i18n>This is a required field.</span> </ng-template>

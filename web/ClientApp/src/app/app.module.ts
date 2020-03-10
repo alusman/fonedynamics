@@ -9,6 +9,12 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { routes } from './routes';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { LocalStorageService } from './services/localstorage.service';
+import { AuthService } from './services/auth.service';
+import { CustomerService } from './services/customer.services';
 
 @NgModule({
   declarations: [
@@ -16,19 +22,17 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    LoginComponent,
+    AuthGuard
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [LocalStorageService, AuthService, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
