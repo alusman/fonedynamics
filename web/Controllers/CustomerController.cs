@@ -31,7 +31,7 @@ namespace web.Controllers
             return _service.GetAll();
         }
 
-        [HttpGet]
+        [HttpGet("{tags}/{page}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<List<Customer>> GetCustomersWithFilter(string tags, string page)
         {

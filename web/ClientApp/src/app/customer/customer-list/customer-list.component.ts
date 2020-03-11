@@ -1,5 +1,5 @@
 import {Component, ViewChild, Input, AfterViewInit} from '@angular/core';
-import { Customer } from 'src/app/models/customers.model';
+import { Customer } from 'src/app/models/customer.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
