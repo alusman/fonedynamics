@@ -7,8 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { routes } from './routes';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -30,8 +28,6 @@ import { MatSortModule } from '@angular/material/sort';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     LoginComponent,
     CustomerComponent,
     CustomerListComponent
