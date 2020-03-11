@@ -1,10 +1,10 @@
 ﻿using core.models;
-using core.repositories;
+using core.interfaces.repositories;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 
-namespace infra
+namespace infra.repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
@@ -15,11 +15,11 @@ namespace infra
             _customers = new ConcurrentDictionary<string, Customer>(StringComparer.OrdinalIgnoreCase);
         }
 
-        public IEnumerable<Customer> GetAll() {
+        public List<Customer> GetAll() {
             throw new NotImplementedException();
         }
  
-        public IEnumerable<Customer> GetAllWithFilters(List<string> tags, string page)
+        public List<Customer> GetAllWithFilter(List<string> tags, string page)
         {
             throw new NotImplementedException();
         }
