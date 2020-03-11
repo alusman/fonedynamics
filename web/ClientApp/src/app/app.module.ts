@@ -16,6 +16,7 @@ import { LocalStorageService } from './services/localstorage.service';
 import { AuthService } from './services/auth.service';
 import { CustomerService } from './services/customer.services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule
   ],

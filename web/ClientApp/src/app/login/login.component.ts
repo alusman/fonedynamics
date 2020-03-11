@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { LocalStorageService } from '../services/localstorage.service';
-import { Login } from '../models/login.model';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,16 @@ import { Login } from '../models/login.model';
 })
 export class LoginComponent implements OnInit {
   public loading = false;
+  public submitted = false;
   public returnUrl: string;
-  public invalidUsernamePassword = false;
-  public readonly loginInfo: Login = new Login();
+  public loginForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private authservice: AuthService,
     private router: Router,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private formBuilder: FormBuilder,
   ) {}
 
   public ngOnInit() {
@@ -28,17 +30,38 @@ export class LoginComponent implements OnInit {
     if (this.localStorage.getItemAsString('authInfo')) {
       this.router.navigate([this.returnUrl]);
     }
+
+    this.createForm();
   }
 
-  public login() {
-    this.invalidUsernamePassword = false;
+  public createForm() {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  get f() { return this.loginForm.controls; }
+
+  public onSubmit() {
+    this.submitted = true;
+
+    if (this.loginForm.invalid) {
+      return;
+    }
+
     this.loading = true;
 
-    this.authservice.login(this.loginInfo.username, this.loginInfo.password).subscribe(res => {
+    this.authservice.login(this.f.username.value, this.f.password.value)
+    .pipe(first())
+    .subscribe(res => {
       if (res) {
         this.loading = false;
         this.router.navigateByUrl(this.returnUrl);
       }
+    },
+    error => {
+      this.loading = false;
     });
   }
 }
