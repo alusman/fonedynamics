@@ -7,6 +7,6 @@ namespace core.interfaces.repositories
     {
         void Initialize();
         List<Customer> GetAll();
-        List<Customer> GetAllWithFilter(List<string> tags, string page);
+        List<Customer> GetAllWithFilter(string tags, string page);
     }
 }

@@ -33,7 +33,7 @@ namespace web.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<Customer>> GetCustomersWithFilter(List<string> tags, string page)
+        public ActionResult<List<Customer>> GetCustomersWithFilter(string tags, string page)
         {
             return _service.GetAllWithFilter(tags, page);
         }

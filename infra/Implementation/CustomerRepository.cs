@@ -24,7 +24,7 @@ namespace infra.repositories
             throw new NotImplementedException();
         }
  
-        public List<Customer> GetAllWithFilter(List<string> tags, string page)
+        public List<Customer> GetAllWithFilter(string tags, string page)
         {
             throw new NotImplementedException();
         }

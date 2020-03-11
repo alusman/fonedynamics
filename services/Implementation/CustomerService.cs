@@ -17,7 +17,7 @@ namespace services
 
         public List<Customer> GetAll() => _repository.GetAll().ToList();
 
-        public List<Customer> GetAllWithFilter(List<string> tags, string page)
+        public List<Customer> GetAllWithFilter(string tags, string page)
         {
             return _repository.GetAllWithFilter(tags, page);
         }
