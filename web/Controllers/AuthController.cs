@@ -24,11 +24,11 @@ namespace web.Controllers
             _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        [HttpGet]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<bool> Login(string username, string password)
+        public ActionResult<bool> Login(LoginRequest request)
         {
-            bool result = _service.Login(username, password);
+            bool result = _service.Login(request.Username, request.Password);
 
             return Ok(result);
         }
