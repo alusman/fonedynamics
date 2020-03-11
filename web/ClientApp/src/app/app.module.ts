@@ -17,6 +17,13 @@ import { AuthService } from './services/auth.service';
 import { CustomerService } from './services/customer.services';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatTableModule } from '@angular/material/table';
+import { CustomerComponent } from './customer/customer.component';
+import { CustomerListComponent } from './customer/customer-list/customer-list.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -26,6 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CounterComponent,
     FetchDataComponent,
     LoginComponent,
+    CustomerComponent,
+    CustomerListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -33,7 +42,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CdkTableModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [LocalStorageService, AuthService, CustomerService, AuthGuard],
   bootstrap: [AppComponent]
