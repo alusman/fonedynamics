@@ -76,6 +76,9 @@ namespace web
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
+            app.InitializeAuth();
+            app.InitializeCustomers();
+
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,

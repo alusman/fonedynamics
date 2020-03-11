@@ -15,6 +15,11 @@ namespace infra.repositories
             _customers = new ConcurrentDictionary<string, Customer>(StringComparer.OrdinalIgnoreCase);
         }
 
+        public void Initialize()
+        {
+
+        }
+
         public List<Customer> GetAll() {
             throw new NotImplementedException();
         }

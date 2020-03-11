@@ -3,7 +3,9 @@ using core.models;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace infra.repositories
 {
@@ -16,9 +18,17 @@ namespace infra.repositories
             _auth = new ConcurrentDictionary<string, Auth>(StringComparer.OrdinalIgnoreCase);
         }
 
-        public bool Login(string username, string password)
+		public void Initialize()
+		{
+			
+		}
+
+		public bool Login(string username, string password)
         {
-            throw new NotImplementedException();
-        }
+			if (!_auth.TryGetValue(username, out var userPrivate))
+				return false;
+
+			return true;
+		}
     }
 }
