@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web", "web\web.csproj", "{94A2782D-A01A-4B40-B130-0F1DF7A75655}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "web", "web\web.csproj", "{94A2782D-A01A-4B40-B130-0F1DF7A75655}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "core", "core\core.csproj", "{BB5CC427-DBBE-4AEA-BE93-52FE959E8A05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "core", "core\core.csproj", "{BB5CC427-DBBE-4AEA-BE93-52FE959E8A05}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "services", "services\services.csproj", "{7BCF69A6-27FE-4789-B7CE-D6EA1345291F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "services", "services\services.csproj", "{7BCF69A6-27FE-4789-B7CE-D6EA1345291F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "infra", "infra\infra.csproj", "{FEFE1D7E-5DDD-4DA8-96BB-3B7D1645BB88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "infra", "infra\infra.csproj", "{FEFE1D7E-5DDD-4DA8-96BB-3B7D1645BB88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
