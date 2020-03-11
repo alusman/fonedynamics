@@ -25,7 +25,7 @@ namespace infra.repositories
 
 		public bool Login(string username, string password)
         {
-			if (!_auth.TryGetValue(username, out var userPrivate))
+			if (!_auth.TryGetValue(username, out var auth))
 				return false;
 
 			return true;
