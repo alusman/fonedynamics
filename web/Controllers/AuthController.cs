@@ -11,14 +11,14 @@ using Microsoft.Extensions.Logging;
 namespace web.Controllers
 {
     [ApiController]
-    [Route("api/v1/user")]
+    [Route("api/v1/auth")]
     [Produces("application/json")]
-    public class UserController : ControllerBase
+    public class AuthController : ControllerBase
     {
-        private readonly IUserService _service;
-        private readonly ILogger<UserController> _logger;
+        private readonly IAuthService _service;
+        private readonly ILogger<AuthController> _logger;
 
-        public UserController(ILogger<UserController> logger, IUserService service)
+        public AuthController(ILogger<AuthController> logger, IAuthService service)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _service = service ?? throw new ArgumentNullException(nameof(service));
@@ -26,9 +26,9 @@ namespace web.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<bool> Login(string username)
+        public ActionResult<bool> Login(string username, string password)
         {
-            bool result = _service.Get(username);
+            bool result = _service.Login(username, password);
 
             return Ok(result);
         }

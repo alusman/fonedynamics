@@ -8,19 +8,17 @@ using System.Text;
 
 namespace services
 {
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
-        private readonly IUserRepository _repository;
+        private readonly IAuthRepository _repository;
 
-        public UserService(IUserRepository repository)
+        public AuthService(IAuthRepository repository)
         {
             _repository = repository ?? throw new ArgumentException(nameof(repository));
         }
 
-        public List<User> GetAll() => _repository.GetAll().ToList();
-
-        public bool Get(string username) {
-            return _repository.Get(username);
+        public bool Login(string username, string password) {
+            return _repository.Login(username, password);
         }
     }
 }

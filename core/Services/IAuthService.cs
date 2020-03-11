@@ -5,9 +5,8 @@ using System.Text;
 
 namespace core.interfaces.services
 {
-    public interface IUserService
+    public interface IAuthService
     {
-        List<User> GetAll();
-        bool Get(string username);
+        bool Login(string username, string password);
     }
 }

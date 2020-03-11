@@ -33,8 +33,8 @@ namespace web
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddSingleton<IUserRepository, UserRepository>();
-            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IAuthRepository, AuthRepository>();
+            services.AddSingleton<IAuthService, AuthService>();
             services.AddSingleton<ICustomerRepository, CustomerRepository>();
             services.AddSingleton<ICustomerService, CustomerService>();
         }

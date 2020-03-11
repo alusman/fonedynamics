@@ -5,9 +5,8 @@ using System.Text;
 
 namespace core.interfaces.repositories
 {
-    public interface IUserRepository
+    public interface IAuthRepository
     {
-        List<User> GetAll();
-        bool Get(string username);
+        bool Login(string username, string password);
     }
 }
