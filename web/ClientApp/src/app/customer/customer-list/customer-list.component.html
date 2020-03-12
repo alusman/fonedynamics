@@ -20,7 +20,7 @@
 
     <ng-container matColumnDef="tags">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Tags </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.tags.join() }} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.tags.join(', ') }} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
