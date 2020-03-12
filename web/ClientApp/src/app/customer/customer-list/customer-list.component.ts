@@ -1,4 +1,4 @@
-import {Component, ViewChild, Input, AfterViewInit, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
+import {Component, ViewChild, Input, AfterViewInit, OnChanges, SimpleChanges, OnInit, Output, EventEmitter} from '@angular/core';
 import { Customer, CustomerResult, CustomerFilter } from 'src/app/models/customer.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,7 +9,7 @@ import { MatSort } from '@angular/material/sort';
   templateUrl: 'customer-list.component.html',
   styleUrls: ['customer-list.component.scss'],
 })
-export class CustomerListComponent implements OnChanges, AfterViewInit {
+export class CustomerListComponent implements OnInit, OnChanges, AfterViewInit {
   displayedColumns = ['name', 'num_Employees', 'tags'];
   dataSource: MatTableDataSource<Customer>;
 
@@ -23,6 +23,10 @@ export class CustomerListComponent implements OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor() {}
+
+  ngOnInit() {
+    this.dataSource.sort = this.sort;
+    }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.data) {
