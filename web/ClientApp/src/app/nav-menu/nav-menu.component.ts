@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -14,7 +15,7 @@ export class NavMenuComponent implements OnInit, OnDestroy {
 
   sub: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.sub = this.authService.currentUser$.subscribe(name => this.username = name);
@@ -26,6 +27,11 @@ export class NavMenuComponent implements OnInit, OnDestroy {
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/login');
   }
 
   ngOnDestroy() {

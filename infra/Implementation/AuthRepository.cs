@@ -20,8 +20,23 @@ namespace infra.repositories
 
 		public void Initialize()
 		{
-			
-		}
+            try
+            {
+                using (StreamReader r = new StreamReader(@"Data\auth.json"))
+                {
+                    string json = r.ReadToEnd();
+                    List<Auth> list = JsonConvert.DeserializeObject<List<Auth>>(json);
+
+                    foreach (var item in list)
+                    {
+                        _auth.TryAdd(item.Username, item);
+                    }
+                }
+            }
+            catch (Exception) { 
+            
+            }
+        }
 
 		public bool Login(string username, string password)
         {

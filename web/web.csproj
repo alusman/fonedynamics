@@ -26,6 +26,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="auth.json" />
+    <Content Remove="customers.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Data\auth.json" />
+    <None Include="Data\customers.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\core\core.csproj" />
     <ProjectReference Include="..\infra\infra.csproj" />
     <ProjectReference Include="..\services\services.csproj" />

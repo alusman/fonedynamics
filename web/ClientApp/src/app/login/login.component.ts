@@ -13,6 +13,7 @@ import { first } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
   public loading = false;
   public submitted = false;
+  public invalid = false;
   public returnUrl: string;
   public loginForm: FormGroup;
 
@@ -59,6 +60,7 @@ export class LoginComponent implements OnInit {
       if (res) {
         this.router.navigateByUrl(this.returnUrl);
       }
+      this.invalid = true;
     },
     error => {
       this.loading = false;
