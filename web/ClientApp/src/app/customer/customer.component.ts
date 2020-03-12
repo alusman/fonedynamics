@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerResult } from '../models/customer.model';
+import { CustomerResult, CustomerFilter } from '../models/customer.model';
 import { CustomerService } from '../services/customer.services';
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-customer',
@@ -15,9 +14,22 @@ export class CustomerComponent implements OnInit {
   constructor(private service: CustomerService) {}
 
   ngOnInit() {
-    this.service.getCustomers().pipe(tap(result => {
+   this.InitializeData();
+  }
+
+  InitializeData() {
+    this.service.getCustomers().subscribe(result => {
       this.customers = result;
-      console.log(this.customers);
-    }));
+    });
+  }
+
+  customerFilterChanged(filter: CustomerFilter) {
+    if (filter.search !== '') {
+      this.service.getCustomersWithFilter(filter.search, filter.pageStart, filter.pageSize).subscribe(result => {
+        this.customers = result;
+      });
+    } else {
+      this.InitializeData();
+    }
   }
 }

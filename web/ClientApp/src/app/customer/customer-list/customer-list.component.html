@@ -13,15 +13,15 @@
       <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="num_employees">
+    <ng-container matColumnDef="num_Employees">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Employees </mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{ row.num_employees }} </mat-cell>
+      <mat-cell *matCellDef="let row"> {{ row.num_Employees }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="tags">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Tags </mat-header-cell>
       <mat-cell *matCellDef="let row"> {{ row.tags.join() }} </mat-cell>
-    </ng-container> -->
+    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;">

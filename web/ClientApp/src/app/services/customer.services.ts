@@ -15,18 +15,14 @@ export class CustomerService implements ICustomerService {
   constructor(private http: HttpClient) {}
 
   public getCustomers(): Observable<CustomerResult> {
-    return this.http.get<CustomerResult>(`${this.baseUrl}/customers`).pipe(tap(res => {
-      console.log(res);
-    }),
+    return this.http.get<CustomerResult>(`${this.baseUrl}`).pipe(tap(),
       catchError((error: Response) => {
         return throwError(error);
       }));
   }
 
   public getCustomersWithFilter(search: string, pageStart: number, pageSize: number): Observable<CustomerResult> {
-    return this.http.get<CustomerResult>(`${this.baseUrl}/${search}/${pageStart}/${pageSize}`).pipe(tap(res => {
-      console.log(res);
-    }),
+    return this.http.get<CustomerResult>(`${this.baseUrl}/${search}/${pageStart}/${pageSize}`).pipe(tap(),
       catchError((error: Response) => {
         return throwError(error);
       }));
