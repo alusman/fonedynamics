@@ -30,7 +30,7 @@ namespace web.Controllers
         {
             var result = _service.GetAll().ToList();
 
-            return new CustomerResponse(result.Count, result);
+            return Ok(new CustomerResponse(result.Count, result));
         }
 
         [HttpGet("{search}/{pageStart}/{pageSize}")]
@@ -39,7 +39,7 @@ namespace web.Controllers
         {
             var result = _service.GetAllWithFilter(search, pageStart, pageSize);
 
-            return new CustomerResponse(result.Item1, result.Item2);
+            return Ok(new CustomerResponse(result.Item1, result.Item2));
         }
     }
 }
