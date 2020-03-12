@@ -1,4 +1,4 @@
-import {Component, ViewChild, Input, AfterViewInit} from '@angular/core';
+import {Component, ViewChild, Input, AfterViewInit, OnInit} from '@angular/core';
 import { Customer } from 'src/app/models/customer.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -9,31 +9,21 @@ import { MatSort } from '@angular/material/sort';
   templateUrl: 'customer-list.component.html',
   styleUrls: ['customer-list.component.scss'],
 })
-export class CustomerListComponent implements AfterViewInit {
-  displayedColumns = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+export class CustomerListComponent implements OnInit, AfterViewInit {
+  displayedColumns = ['name', 'num_employees', 'tags'];
+  dataSource: MatTableDataSource<Customer>;
 
   @Input() data: Customer[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
-    // Create 100 users
-    const users: UserData[] = [];
-    for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
+  constructor() {}
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-
-    // replace with this when backend is ready
-    // this.dataSource = new MatTableDataSource(customers);
+  ngOnInit() {
+    this.dataSource = new MatTableDataSource(this.data);
   }
 
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -44,35 +34,4 @@ export class CustomerListComponent implements AfterViewInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-}
-
-
-
-
-/** Constants used to fill up our data base. */
-const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
-  /** Builds and returns a new User. */
-function createNewUser(id: number): UserData {
-  const name =
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
 }

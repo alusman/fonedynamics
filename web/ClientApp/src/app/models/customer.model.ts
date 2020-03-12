@@ -1,6 +1,6 @@
 export interface Customer {
   id: string;
-  numberOfEmployees: number;
+  num_employees: number;
   name: string;
   tags: string[];
 }

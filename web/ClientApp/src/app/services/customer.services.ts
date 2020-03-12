@@ -15,7 +15,9 @@ export class CustomerService implements ICustomerService {
   constructor(private http: HttpClient) {}
 
   public getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${this.baseUrl}`).pipe(tap(),
+    return this.http.get<Customer[]>(`${this.baseUrl}`).pipe(tap(res => {
+      console.log(res);
+    }),
       catchError((error: Response) => {
         return throwError(error);
       }));
