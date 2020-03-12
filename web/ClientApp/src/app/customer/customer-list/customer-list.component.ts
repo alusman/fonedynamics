@@ -1,5 +1,5 @@
 import {Component, ViewChild, Input, AfterViewInit, OnInit} from '@angular/core';
-import { Customer } from 'src/app/models/customer.model';
+import { Customer, CustomerResult } from 'src/app/models/customer.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -10,10 +10,10 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['customer-list.component.scss'],
 })
 export class CustomerListComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['name', 'num_employees', 'tags'];
+  displayedColumns = ['name'];
   dataSource: MatTableDataSource<Customer>;
 
-  @Input() data: Customer[];
+  @Input() data: CustomerResult;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -21,12 +21,16 @@ export class CustomerListComponent implements OnInit, AfterViewInit {
   constructor() {}
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource(this.data);
+    if (!!this.data) {
+      this.dataSource = new MatTableDataSource(this.data.customers);
+    }
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    if (!!this.data) {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
   }
 
   applyFilter(filterValue: string) {

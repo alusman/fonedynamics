@@ -24,18 +24,22 @@ namespace web.Controllers
             _service = service ?? throw new ArgumentNullException(nameof(service));
         }
 
-        [HttpGet]
+        [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<Customer>> GetCustomers()
+        public ActionResult<CustomerResponse> GetCustomers()
         {
-            return _service.GetAll();
+            var result = _service.GetAll().ToList();
+
+            return new CustomerResponse(result.Count, result);
         }
 
-        [HttpGet("{tags}/{page}")]
+        [HttpGet("{search}/{pageStart}/{pageSize}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<Customer>> GetCustomersWithFilter(string tags, string page)
+        public ActionResult<CustomerResponse> GetCustomersWithFilter(string search, int pageStart, int pageSize)
         {
-            return _service.GetAllWithFilter(tags, page);
+            var result = _service.GetAllWithFilter(search, pageStart, pageSize);
+
+            return new CustomerResponse(result.Item1, result.Item2);
         }
     }
 }

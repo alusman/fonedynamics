@@ -4,3 +4,8 @@ export interface Customer {
   name: string;
   tags: string[];
 }
+
+export interface CustomerResult {
+  customers: Customer[];
+  total: number;
+}

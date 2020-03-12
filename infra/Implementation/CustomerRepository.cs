@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace infra.repositories
 {
@@ -43,9 +44,19 @@ namespace infra.repositories
             return _customers.Select(item => item.Value).ToList();
         }
  
-        public List<Customer> GetAllWithFilter(string tags, string page)
+        public Tuple<int, List<Customer>> GetAllWithFilter(string search, int pageStart, int pageSize)
         {
-            return _customers.Select(item => item.Value).ToList();
+            var filtered = _customers.Select(item => item.Value).AsQueryable();
+
+            if (!string.IsNullOrEmpty(search)) {
+                filtered = filtered.Where(customer => customer.Tags.Contains(search));
+            }
+
+            var total = filtered.Count();
+
+            var result = filtered.Skip(pageStart).Take(pageSize).ToList();
+
+            return new Tuple<int, List<Customer>>(total, result);
         }
     }
 }

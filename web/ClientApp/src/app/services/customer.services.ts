@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import { Customer } from '../models/customer.model';
+import { Observable, throwError } from 'rxjs';
+import { CustomerResult } from '../models/customer.model';
 import { HttpClient } from '@angular/common/http';
 import { tap, catchError } from 'rxjs/operators';
 
 export interface ICustomerService {
-  getCustomers(): Observable<Customer[]>;
+  getCustomers(): Observable<CustomerResult>;
 }
 
 @Injectable()
@@ -14,8 +14,8 @@ export class CustomerService implements ICustomerService {
 
   constructor(private http: HttpClient) {}
 
-  public getCustomers(): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${this.baseUrl}`).pipe(tap(res => {
+  public getCustomers(): Observable<CustomerResult> {
+    return this.http.get<CustomerResult>(`${this.baseUrl}/customers`).pipe(tap(res => {
       console.log(res);
     }),
       catchError((error: Response) => {
@@ -23,8 +23,10 @@ export class CustomerService implements ICustomerService {
       }));
   }
 
-  public getCustomersWithFilter(tags: string, page: string): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${this.baseUrl}/${tags}/${page}`).pipe(tap(),
+  public getCustomersWithFilter(search: string, pageStart: number, pageSize: number): Observable<CustomerResult> {
+    return this.http.get<CustomerResult>(`${this.baseUrl}/${search}/${pageStart}/${pageSize}`).pipe(tap(res => {
+      console.log(res);
+    }),
       catchError((error: Response) => {
         return throwError(error);
       }));

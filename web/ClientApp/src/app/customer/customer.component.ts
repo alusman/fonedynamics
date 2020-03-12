@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../models/customer.model';
+import { CustomerResult } from '../models/customer.model';
 import { CustomerService } from '../services/customer.services';
 import { tap } from 'rxjs/operators';
 
@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
 })
 export class CustomerComponent implements OnInit {
 
-  customers: Customer[] = [];
+  customers: CustomerResult;
 
   constructor(private service: CustomerService) {}
 

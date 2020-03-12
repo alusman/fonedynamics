@@ -1,11 +1,13 @@
 ﻿using core.models;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace core.interfaces.services
 {
     public interface ICustomerService
     {
         List<Customer> GetAll();
-        List<Customer> GetAllWithFilter(string tags, string page);
+        Tuple<int, List<Customer>> GetAllWithFilter(string search, int pageStart, int pageSize);
     }
 }
