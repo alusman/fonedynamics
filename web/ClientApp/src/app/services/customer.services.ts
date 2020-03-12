@@ -21,8 +21,8 @@ export class CustomerService implements ICustomerService {
       }));
   }
 
-  public getCustomersWithFilter(search: string, pageStart: number, pageSize: number): Observable<CustomerResult> {
-    return this.http.get<CustomerResult>(`${this.baseUrl}/${search}/${pageStart}/${pageSize}`).pipe(tap(),
+  public getCustomersWithFilter(pageStart: number, pageSize: number, search: string): Observable<CustomerResult> {
+    return this.http.get<CustomerResult>(`${this.baseUrl}/${pageStart}/${pageSize}/${search}`).pipe(tap(),
       catchError((error: Response) => {
         return throwError(error);
       }));

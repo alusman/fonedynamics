@@ -33,9 +33,9 @@ namespace web.Controllers
             return Ok(new CustomerResponse(result.Count, result));
         }
 
-        [HttpGet("{search}/{pageStart}/{pageSize}")]
+        [HttpGet("{pageStart}/{pageSize}/{search?}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<CustomerResponse> GetCustomersWithFilter(string search, int pageStart, int pageSize)
+        public ActionResult<CustomerResponse> GetCustomersWithFilter(int pageStart, int pageSize, string search = "")
         {
             var result = _service.GetAllWithFilter(search, pageStart, pageSize);
 

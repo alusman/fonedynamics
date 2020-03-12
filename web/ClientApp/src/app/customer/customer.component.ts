@@ -24,12 +24,8 @@ export class CustomerComponent implements OnInit {
   }
 
   customerFilterChanged(filter: CustomerFilter) {
-    if (filter.search !== '') {
-      this.service.getCustomersWithFilter(filter.search, filter.pageStart, filter.pageSize).subscribe(result => {
+      this.service.getCustomersWithFilter(filter.pageStart, filter.pageSize, filter.search).subscribe(result => {
         this.customers = result;
       });
-    } else {
-      this.InitializeData();
-    }
   }
 }
