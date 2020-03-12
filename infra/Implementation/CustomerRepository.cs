@@ -49,7 +49,7 @@ namespace infra.repositories
             var filtered = _customers.Select(item => item.Value).AsQueryable();
 
             if (!string.IsNullOrEmpty(search)) {
-                filtered = filtered.Where(customer => customer.Tags.Contains(search));
+                filtered = filtered.Where(customer => customer.Tags.Exists(c => c.Contains(search)));
             }
 
             var total = filtered.Count();
