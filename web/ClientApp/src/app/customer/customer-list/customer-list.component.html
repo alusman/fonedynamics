@@ -1,7 +1,5 @@
 <div class="header">
-
-    <input matInput class="form-control" (keyup)="applyFilter($event.target.value)" placeholder="Tags">
-
+  <input matInput class="form-control" [(ngModel)]="filterValue" (keyup)="applyFilter($event.target.value)" placeholder="Tags">
 </div>
 
 <div class="container mat-elevation-z8">
@@ -28,5 +26,21 @@
     </mat-row>
   </mat-table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <mat-toolbar>
+    <mat-toolbar-row>
+      <div class="page-dropdown">
+      <mat-form-field>
+        <mat-label>Page Size</mat-label>
+        <mat-select [(value)]="pageValue" (selectionChange)="pageSelectionChanged()">
+          <mat-option *ngFor="let option of pageOptions" [value]="option.value">
+            {{ option.displayText }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </div>
+
+
+

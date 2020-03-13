@@ -54,6 +54,10 @@ namespace infra.repositories
 
             var total = filtered.Count();
 
+            if (pageSize == -1) {
+                pageSize = total;
+            }
+
             var result = filtered.Skip(pageStart).Take(pageSize).ToList();
 
             return new Tuple<int, List<Customer>>(total, result);

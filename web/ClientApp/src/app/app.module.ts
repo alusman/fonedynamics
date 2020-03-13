@@ -22,6 +22,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
+    MatSelectModule
   ],
   providers: [LocalStorageService, AuthService, CustomerService, AuthGuard],
   bootstrap: [AppComponent]

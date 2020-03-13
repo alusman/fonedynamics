@@ -4,6 +4,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
+export enum PageOptionEnum {
+  'FirstSet',
+  'SecondSet',
+  'ThirdSet',
+}
+
 @Component({
   selector: 'app-customer-list',
   templateUrl: 'customer-list.component.html',
@@ -13,8 +19,16 @@ export class CustomerListComponent implements OnChanges {
   displayedColumns = ['name', 'num_Employees', 'tags'];
   dataSource: MatTableDataSource<Customer>;
 
+  pageOptions = [
+    { value: PageOptionEnum.FirstSet, displayText: '1 - 10' },
+    { value: PageOptionEnum.SecondSet, displayText: '11 - 50' },
+    { value: PageOptionEnum.ThirdSet, displayText: '50 +' }
+  ];
+
+  pageValue = PageOptionEnum.FirstSet;
   pageStart = 0;
   pageSize = 10;
+  filterValue = '';
 
   @Input() data: CustomerResult;
   @Output() filterChanged = new EventEmitter<CustomerFilter>();
@@ -34,8 +48,29 @@ export class CustomerListComponent implements OnChanges {
     }
   }
 
-  applyFilter(filterValue: string) {
-    const filter = { search: filterValue, pageSize: this.pageSize, pageStart: this.pageStart };
+  applyFilter() {
+    this.setPagingValues();
+    const filter = { search: this.filterValue, pageSize: this.pageSize, pageStart: this.pageStart };
     this.filterChanged.emit(filter);
+  }
+
+  pageSelectionChanged() {
+    this.applyFilter();
+  }
+
+  setPagingValues() {
+    switch (this.pageValue) {
+      case PageOptionEnum.FirstSet:
+        this.pageStart = 0;
+        this.pageSize = 10;
+        break;
+      case PageOptionEnum.SecondSet:
+        this.pageStart = 11;
+        this.pageSize = 50;
+        break;
+      default:
+        this.pageStart = 50;
+        this.pageSize = -1;
+    }
   }
 }
