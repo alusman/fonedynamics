@@ -30,7 +30,7 @@
     <mat-toolbar-row>
       <div class="page-dropdown">
       <mat-form-field>
-        <mat-label>Page Size</mat-label>
+        <mat-label>Showing Items</mat-label>
         <mat-select [(value)]="pageValue" (selectionChange)="pageSelectionChanged()">
           <mat-option *ngFor="let option of pageOptions" [value]="option.value">
             {{ option.displayText }}
