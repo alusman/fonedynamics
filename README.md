@@ -14,4 +14,4 @@ Make sure NPM and Angular-CLI are installed in your machine.
 If in case there are missing libraries in Angular, please follow these steps and try again:
 - open PowerShell
 - go to {web project directory}/ClientApp
-- type npm ci
+- type npm install
